@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/c_cardB"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter Details"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:gravity="center"
         android:fontFamily="sans-serif"/>
@@ -22,12 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Task"
-        android:textSize="10dp"
         android:layout_marginTop="30dp"
         android:padding="15dp"
         android:background="@drawable/custom_edittetext"
         android:textColorHint="#BFBBBB"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
     <EditText
@@ -36,23 +35,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Priority"
-        android:textSize="10dp"
         android:padding="15dp"
         android:background="@drawable/custom_edittetext"
         android:textColorHint="#BFBBBB"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/save_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="@drawable/savebtn"
-        android:gravity="center"
-        android:text="Save"
-        android:textAlignment="center"
-        android:textColor="#04156E"
-        android:textSize="18sp" />
+        android:text="Save"/>
 
 </LinearLayout>

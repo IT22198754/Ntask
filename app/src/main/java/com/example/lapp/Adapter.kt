@@ -3,24 +3,22 @@ package com.example.lapp
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.view.view.mylayout
-import kotlinx.android.synthetic.main.view.view.priority
-import kotlinx.android.synthetic.main.view.view.title
+import com.example.lapp.databinding.ActivityUpdateCardBinding
+import com.example.lapp.databinding.ViewBinding
 
-class Adapter(var data:List<CardInfo>): RecyclerView.Adapter<Adapter.viewHolder>() {
-    class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title = itemView.title
-        var priority = itemView.priority
-        var layout = itemView.mylayout
+
+class Adapter(private var data:List<CardInfo>) : RecyclerView.Adapter<Adapter.viewHolder>() {
+    class viewHolder(val binding: ViewBinding): RecyclerView.ViewHolder(binding.root){
+        val title=binding.title
+        val priority=binding.priority
+        val layout=binding.mylayout
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        var itemView = LayoutInflater.from(parent.context).
-                inflate(R.layout.view,parent,false)
-        return viewHolder(itemView)
+        var binding = ViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return viewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -28,21 +26,22 @@ class Adapter(var data:List<CardInfo>): RecyclerView.Adapter<Adapter.viewHolder>
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        when(data[position].priority.toLowerCase())
-        {
-            "high" -> holder.layout.setBackgroundColor(Color.parseColor("#F05454"))
-            "medium" -> holder.layout.setBackgroundColor(Color.parseColor("#EDC988"))
-            else -> holder.layout.setBackgroundColor(Color.parseColor("#EDC988"))
+        val currentItem = data[position]
 
+        when (currentItem.priority.toLowerCase()) {
+            "high" -> holder.layout.setBackgroundColor(Color.parseColor("#EA526F"))
+            "medium" -> holder.layout.setBackgroundColor(Color.parseColor("#FCD581"))
+            else -> holder.layout.setBackgroundColor(Color.parseColor("#2EC4B6"))
         }
 
+        holder.title.text=currentItem.title
+        holder.priority.text=currentItem.priority
 
-        holder.title.text=data[position].title
-        holder.priority.text=data[position].priority
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context,UpdateCard::class.java)
-            intent.putExtra("id" , position)
+        holder.itemView.setOnClickListener{
+            val intent=Intent(holder.itemView.context, UpdateCard::class.java)
+            intent.putExtra("id", position)
             holder.itemView.context.startActivity(intent)
         }
+
     }
 }
